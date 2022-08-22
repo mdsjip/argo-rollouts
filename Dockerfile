@@ -86,6 +86,14 @@ CMD ["dashboard"]
 ####################################################################################################
 FROM scratch
 
+ARG GIT_REV
+LABEL GIT_REV=${GIT_REV}
+ENV GIT_REV=${GIT_REV}
+
+ARG GIT_URL
+LABEL GIT_URL=${GIT_URL}
+ENV GIT_URL=${GIT_URL}
+
 COPY --from=argo-rollouts-build /go/src/github.com/argoproj/argo-rollouts/dist/rollouts-controller /bin/
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
 
